@@ -1,0 +1,23 @@
+:root {
+  --text-color-primary: #030712;
+  --text-color-primary-active: #f9fafb;
+  --bg: #ffffff;
+  --bg-secondary: #fde047;
+  --border-color: #e5e7eb;
+
+  --btn-bg-primary: #ffffff;
+  --btn-bg-primary-active: #111827;
+
+  --screen-xl: 1440px;
+}
+
+.dark-mode {
+  --text-color-primary: #f9fafb;
+  --text-color-primary-active: #030712;
+  --bg: #111827;
+  --bg-secondary: #1d4ed8;
+  --border-color: #0d2538;
+
+  --btn-bg-primary: #111827;
+  --btn-bg-primary-active: #ffffff;
+}

@@ -10,8 +10,13 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/color-mode": "^3.5.2",
     "nuxt": "^4.1.1",
     "vue": "^3.5.20",
     "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "sass": "^1.92.1",
+    "sass-loader": "^16.0.5"
   }
 }
