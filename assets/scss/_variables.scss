@@ -1,6 +1,8 @@
 :root {
   --text-color-primary: #030712;
   --text-color-primary-active: #f9fafb;
+  --text-color-secondary: #6b7280;
+
   --bg: #ffffff;
   --bg-secondary: #fde047;
   --border-color: #e5e7eb;
@@ -14,6 +16,8 @@
 .dark-mode {
   --text-color-primary: #f9fafb;
   --text-color-primary-active: #030712;
+  --text-color-secondary: #9ca3af;
+
   --bg: #111827;
   --bg-secondary: #1d4ed8;
   --border-color: #0d2538;
