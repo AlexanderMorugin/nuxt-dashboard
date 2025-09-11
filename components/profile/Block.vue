@@ -1,5 +1,6 @@
 <template>
   <div class="avatarBlock">
+    <ProfileExit />
     <ProfileAvatar />
     <ProfileName />
   </div>

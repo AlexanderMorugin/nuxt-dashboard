@@ -1,17 +1,16 @@
 <template>
   <div class="page-screen">
-    <Header />
+    <SideBar />
     <div class="content">
-      <SideBar />
+      <Header />
       <main class="main">MAIN</main>
-
-      
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .page-screen {
+  display: flex;
   width: 100%;
   max-width: var(--screen-xl);
   margin: 0 auto;
@@ -21,15 +20,9 @@
   border: 1px solid red;
 }
 .content {
-  display: flex;
+  width: 100%;
 }
 .main {
-  width: 100%;
   border: 1px solid red;
 }
-
-/* .title {
-  font-family: "Inter-Regular", sans-serif;
-  font-size: 24px;
-} */
 </style>
