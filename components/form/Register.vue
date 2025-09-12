@@ -1,5 +1,6 @@
 <template>
-  <form class="registerForm" @submit.prevent="submitRegisterForm">
+  <form class="form-auth" @submit.prevent="submitRegisterForm">
+    <FormTitle title="Регистрация" />
     <!-- Поле ввода имени -->
     <div class="form-field">
       <input
@@ -105,17 +106,13 @@
       >
     </div>
 
-    <!-- Заглушка показывается вместо кнопки Сабмита, если валидация не прошла -->
-    <div v-if="isFromEmpty || isValid.length" class="formEmptyButton">
-      <span class="formEmptyButtonText">Заполните все поля</span>
-    </div>
-
     <!-- Кнопка Сабмит -->
-    <button v-else class="form-button form-button-active">
-      <!-- Лоадер, крутится пока данные отправляются на сервер -->
-      <LoaderButton v-if="isLoading" />
-      <span v-else>Регистрация</span>
-    </button>
+    <FormSubmit
+      :isFromEmpty="isFromEmpty"
+      :isValid="isValid.length"
+      :isLoading="isLoading"
+      text="Регистрация"
+    />
   </form>
 </template>
 
@@ -125,14 +122,9 @@ import {
   helpers,
   required,
   minLength,
-  numeric,
   email,
   sameAs,
 } from "@vuelidate/validators";
-
-const { isRegister } = defineProps(["isRegister"]);
-
-const emit = defineEmits(["closeCooperationModal"]);
 
 const isLoading = ref(false);
 const firstNameField = ref(null);
@@ -185,7 +177,6 @@ const isFromEmpty = computed(
     !emailField.value ||
     !passwordField.value ||
     !confirmPasswordField.value
-  //  === passwordField.value
 );
 
 const isValid = computed(() => v$.value.$errors);
@@ -204,67 +195,14 @@ const submitRegisterForm = () => {
 
   setTimeout(() => {
     isLoading.value = false;
-    emit("closeCooperationModal");
+
+    firstNameField.value = null;
+    lastNameField.value = null;
+    emailField.value = null;
+    passwordField.value = null;
+    confirmPasswordField.value = null;
   }, 2000);
 };
 </script>
 
-<style scoped lang="scss">
-.registerForm {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  width: 100%;
-}
-
-.formEmptyButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 55px;
-  border-radius: 12px;
-  border: 2px solid var(--blue-primary);
-  background: var(--text-color-secondary);
-  // font-family: "Inter-Medium", sans-serif;
-  // font-size: 16px;
-  // letter-spacing: 1px;
-  color: var(--btn-color-white);
-  text-transform: uppercase;
-  cursor: auto;
-  margin-top: 20px;
-}
-.formEmptyButtonText {
-  font-family: "Inter-Medium", sans-serif;
-  font-size: 16px;
-  color: var(--text-color-primary);
-  white-space: nowrap;
-  // transform: translateY(100%);
-  // opacity: 0;
-  // // transition-delay: 500ms;
-  // transition: 1.5s ease;
-
-  animation: slide-in 1.5s ease;
-}
-// .formEmptyButtonText_visible {
-//   transform: translateY(0);
-//   opacity: 1;
-// }
-
-@keyframes slide-in {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-}
-
-/* @media (max-width: 767px) {
-  .request-form {
-    gap: 20px;
-    padding-top: 26px;
-  }
-} */
-</style>
+<style scoped lang="scss"></style>

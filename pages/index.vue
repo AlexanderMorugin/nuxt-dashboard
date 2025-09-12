@@ -5,7 +5,7 @@
       <Header />
       <main class="main">
         <h1>MAIN CONTENT</h1>
-        <NuxtLink to="/login">Login Page</NuxtLink>
+        <NuxtLink to="/auth">Auth Page</NuxtLink>
       </main>
     </div>
   </div>
