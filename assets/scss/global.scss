@@ -7,11 +7,13 @@ body {
   background-color: var(--bg);
   color: var(--text-color-primary);
   line-height: 1.55;
+  // line-height: 1;
   transition: background-color 0.3s;
 }
 
 a {
   color: var(--text-color-primary);
+  // border: 1px solid red;
 }
 
 *,
@@ -34,4 +36,12 @@ button {
   cursor: pointer;
 }
 
+.page-screen {
+  width: 100%;
+  max-width: var(--screen-xl);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
 
+  // border: 1px solid red;
+}

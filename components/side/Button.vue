@@ -44,7 +44,7 @@ const {
   transition: 0.25s ease all;
 
   &:hover {
-    background: var(--bg-secondary);
+    background: var(--border-color);
   }
 
   &_active {

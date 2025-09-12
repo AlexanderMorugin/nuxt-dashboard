@@ -51,56 +51,5 @@ const toggleSideBar = () => (isSideBarOpen.value = !isSideBarOpen.value);
     flex-direction: column;
     gap: 10px;
   }
-
-  // &__listButton {
-  //   display: grid;
-  //   grid-template-columns: 24px 1fr;
-  //   justify-items: left;
-  //   align-items: center;
-  //   gap: 8px;
-  //   width: 100%;
-  //   max-width: 49px;
-  //   background: var(--btn-bg-primary);
-  //   border: 2px solid var(--border-color);
-  //   border-radius: 30px;
-  //   padding: 10px;
-
-  //   &_active {
-  //     background: var(--btn-bg-primary-active);
-  //   }
-
-  //   &_open {
-  //     max-width: 100%;
-  //   }
-  // }
-
-  // &__listButtonIcon {
-  //   width: 24px;
-  //   height: 24px;
-  //   color: var(--text-color-primary);
-
-  //   &_active {
-  //     color: var(--text-color-primary-active);
-  //   }
-  // }
-
-  // &__listText {
-  //   font-family: "Inter-Medium", sans-serif;
-  //   font-size: 16px;
-  //   color: var(--text-color-primary);
-  //   white-space: nowrap;
-  //   transform: translateY(10px);
-  //   opacity: 0;
-  //   transition: 0.2s ease;
-
-  //   &_active {
-  //     color: var(--text-color-primary-active);
-  //   }
-
-  //   &_visible {
-  //     transform: translateY(0);
-  //     opacity: 1;
-  //   }
-  // }
 }
 </style>

@@ -1,30 +1,47 @@
 :root {
-  --text-color-primary: #030712;
+  --text-color-primary: #1c2536;
   --text-color-primary-active: #f9fafb;
   --text-color-secondary: #6b7280;
+  --text-color-red: #f04438;
 
   --bg: #ffffff;
+  --bg-inverse: #111827;
   --bg-secondary: #fde047;
   --border-color: #e5e7eb;
 
   --btn-bg-primary: #ffffff;
   --btn-bg-primary-active: #111827;
+  --btn-color-white: #ffffff;
 
   --screen-xl: 1440px;
   --header-height: 96px;
 
+  // --grey-primary: #eeeeee;
+  // --grey-dark-primary: #343a3f;
+  // --grey-dark-secondary: #5f5f5f;
+  // --blue-light-primary: #edf3fa;
+  --blue-primary: #d2e5fd;
+  // --blue-secondary: #819ac1;
+  --blue-dark-primary: #5b6e8c;
+  --blue-dark-secondary: #004c90;
+  --blue-dark-thirdly: #00011f;
 
+  --purple-primary: #6366f1;
+  --purple-secondary: #4447f7;
 }
 
 .dark-mode {
   --text-color-primary: #f9fafb;
-  --text-color-primary-active: #030712;
+  --text-color-primary-active: #1c2536;
   --text-color-secondary: #9ca3af;
+  --text-color-red: #f04438;
 
   --bg: #111827;
+  --bg-inverse: #ffffff;
   --bg-secondary: #1d4ed8;
   --border-color: #0d2538;
 
   --btn-bg-primary: #111827;
   --btn-bg-primary-active: #ffffff;
+  --btn-color-white: #ffffff;
 }
