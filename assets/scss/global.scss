@@ -43,5 +43,10 @@ button {
   padding-left: 24px;
   padding-right: 24px;
 
-  // border: 1px solid red;
+  border: 1px solid red;
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

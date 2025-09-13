@@ -58,6 +58,8 @@
 import { useVuelidate } from "@vuelidate/core";
 import { helpers, required, minLength, email } from "@vuelidate/validators";
 
+const router = useRouter();
+
 const isLoading = ref(false);
 
 const emailField = ref(null);
@@ -99,10 +101,10 @@ const submitLoginForm = () => {
   setTimeout(() => {
     isLoading.value = false;
 
+    router.push("/dashboard");
+
     emailField.value = null;
     passwordField.value = null;
   }, 2000);
 };
 </script>
-
-<style scoped lang="scss"></style>

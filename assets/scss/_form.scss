@@ -32,6 +32,9 @@
   font-size: 16px;
   color: var(--text-color-secondary);
 }
+.form-input:focus::placeholder {
+  color: transparent;
+}
 .form-input-error {
   position: absolute;
   top: 55px;
@@ -78,7 +81,7 @@
   border-radius: 12px;
   border: 2px solid var(--blue-primary);
   background: var(--text-color-secondary);
-  color: var(--btn-color-white);
+  // color: var(--btn-color-white);
   text-transform: uppercase;
   cursor: auto;
   margin-top: 20px;
@@ -86,7 +89,8 @@
 .form-empty-button-text {
   font-family: "Inter-Medium", sans-serif;
   font-size: 16px;
-  color: var(--text-color-primary);
+  // color: var(--text-color-primary);
+  color: var(--btn-color-white);
   white-space: nowrap;
   animation: slide-in 1.5s ease;
 }
@@ -100,15 +104,3 @@
     transform: translateX(0);
   }
 }
-
-// @media (max-width: 767px) {
-//   .form-label {
-//     font-size: 16px;
-//   }
-//   .form-input {
-//     height: 50px;
-//   }
-//   .form-input-error {
-//     top: 78px;
-//   }
-// }

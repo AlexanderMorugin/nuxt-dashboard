@@ -126,6 +126,8 @@ import {
   sameAs,
 } from "@vuelidate/validators";
 
+const router = useRouter();
+
 const isLoading = ref(false);
 const firstNameField = ref(null);
 const lastNameField = ref(null);
@@ -196,6 +198,8 @@ const submitRegisterForm = () => {
   setTimeout(() => {
     isLoading.value = false;
 
+    router.push("/dashboard");
+
     firstNameField.value = null;
     lastNameField.value = null;
     emailField.value = null;
@@ -204,5 +208,3 @@ const submitRegisterForm = () => {
   }, 2000);
 };
 </script>
-
-<style scoped lang="scss"></style>
