@@ -1,7 +1,11 @@
 <template>
   <header class="header">
     <ColorModePicker />
-    <ProfileButton v-if="isScreenLarge" title="Меню" />
+    <ProfileButton
+      v-if="isScreenLarge"
+      title="Меню"
+      @click="$emit('openMenuMobile')"
+    />
     <ProfileBlock :firstName="firstName" :lastName="lastName" :email="email" />
   </header>
 </template>
@@ -15,6 +19,8 @@ const { firstName, lastName, email } = defineProps([
   "lastName",
   "email",
 ]);
+
+const emit = defineEmits(["openMenuMobile"]);
 </script>
 
 <style scoped lang="scss">

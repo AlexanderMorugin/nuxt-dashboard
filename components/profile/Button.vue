@@ -11,7 +11,7 @@ const { title } = defineProps(["title"]);
   display: flex;
   align-items: center;
   border-radius: 30px;
-  border: 2px solid var(--text-color-secondary);
+  border: 2px solid var(--border-color);
   font-family: "Inter-Medium", sans-serif;
   font-size: 14px;
   color: var(--text-color-secondary);
@@ -19,7 +19,7 @@ const { title } = defineProps(["title"]);
   transition: 0.25s ease-in-out;
 
   &:hover {
-    border: 2px solid var(--text-color-primary);
+    border: 2px solid var(--text-color-secondary);
     color: var(--text-color-primary);
   }
 }

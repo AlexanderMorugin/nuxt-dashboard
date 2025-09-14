@@ -2,7 +2,13 @@
   <div class="page-screen dashboard">
     <SideBar v-if="!isScreenLarge" />
     <div class="content">
-      <Header :firstName="firstName" :lastName="lastName" :email="email" />
+      <Header
+        :firstName="firstName"
+        :lastName="lastName"
+        :email="email"
+        @openMenuMobile="openMenuMobile"
+      />
+      <SideBarMobile :isMenuMobileOpen="isMenuMobileOpen" />
       <main class="main">
         <h1>MAIN CONTENT</h1>
         <NuxtLink to="/">Auth Page</NuxtLink>
@@ -18,6 +24,9 @@ const { isScreenLarge } = useResizeLarge();
 const firstName = ref("Александр");
 const lastName = ref("Моругин");
 const email = ref("nobilis@bk.ru");
+const isMenuMobileOpen = ref(false);
+
+const openMenuMobile = () => (isMenuMobileOpen.value = !isMenuMobileOpen.value);
 </script>
 
 <style scoped lang="scss">
