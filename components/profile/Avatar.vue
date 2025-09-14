@@ -6,10 +6,11 @@
 
 <style scoped lang="scss">
 .avatar {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   overflow: hidden;
+  // border: 1px solid red;
 
   &__image {
     width: 100%;

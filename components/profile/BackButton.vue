@@ -4,7 +4,7 @@
   </button>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 const emit = defineEmits(["goBack"]);
 </script>
 

@@ -1,33 +1,32 @@
 <template>
-  <div>
-    <ul>
-      <li
-        v-for="color of ['light', 'dark']"
-        :key="color"
-        :class="{
-          preferred: !$colorMode.unknown && color === $colorMode.preference,
-          selected: !$colorMode.unknown && color === $colorMode.value,
-        }"
-      >
-        <IconDark
-          v-if="color === 'dark'"
-          @click="$colorMode.preference = color"
-        />
-        <IconLight
-          v-if="color === 'light'"
-          @click="$colorMode.preference = color"
-        />
-      </li>
-    </ul>
-  </div>
+  <ul class="colorModePicker">
+    <li
+      v-for="color of ['light', 'dark']"
+      :key="color"
+      :class="{
+        preferred: !$colorMode.unknown && color === $colorMode.preference,
+        selected: !$colorMode.unknown && color === $colorMode.value,
+      }"
+    >
+      <IconDark
+        v-if="color === 'dark'"
+        @click="$colorMode.preference = color"
+      />
+      <IconLight
+        v-if="color === 'light'"
+        @click="$colorMode.preference = color"
+      />
+    </li>
+  </ul>
 </template>
 
-<style scoped lang="scss">
-ul li {
-  display: inline-block;
-  padding: 3px;
+<style scoped>
+.colorModePicker {
+  display: flex;
+  gap: 5px;
+  width: fit-content;
+  line-height: 1;
 }
-
 .feather {
   width: 36px;
   height: 36px;

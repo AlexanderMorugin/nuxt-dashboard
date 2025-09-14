@@ -76,9 +76,13 @@ const goBack = () => {
   align-items: center;
   width: 100%;
   height: 100vh;
+  padding-left: 24px;
+  padding-right: 24px;
 
   @media (max-width: 767px) {
     align-items: flex-start;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 .auth {

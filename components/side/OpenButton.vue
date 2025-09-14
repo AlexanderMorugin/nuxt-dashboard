@@ -19,10 +19,20 @@ const emit = defineEmits(["toggleSideBar"]);
   width: 100%;
   max-width: 300px;
   height: var(--header-height);
-  border: 1px solid red;
+  // border: 1px solid red;
+
+  // @media (max-width: 1023px) {
+  //   justify-content: center;
+  //   max-width: 100%;
+  //   // height: 40px;
+  // }
 
   &__item {
     transition: 0.25s ease-in-out;
+
+    // @media (max-width: 1023px) {
+    //   transform: rotate(90deg);
+    // }
 
     &:hover {
       opacity: 0.6;
@@ -32,6 +42,11 @@ const emit = defineEmits(["toggleSideBar"]);
   &__close {
     color: var(--text-color-primary);
     transition: 0.8s ease-in-out;
+
+    // @media (max-width: 1023px) {
+    //   width: 30px;
+    //   height: 30px;
+    // }
 
     &_active {
       transform: rotate(180deg);

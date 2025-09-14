@@ -41,22 +41,22 @@ const toggleSideBar = () => (isSideBarOpen.value = !isSideBarOpen.value);
   transition: 0.2s ease;
   padding-right: 24px;
 
-  // @media (max-width: 1023px) {
-  //   justify-content: flex-start;
-  //   max-width: 100%;
-  //   height: 86px;
-  //   background: var(--border-color-inverse);
-  //   overflow: hidden;
-  // }
+  @media (max-width: 1023px) {
+    justify-content: flex-start;
+    max-width: 100%;
+    height: 86px;
+    // background: var(--border-color-inverse);
+    // overflow: hidden;
+  }
 
   &_active {
     width: 100%;
     max-width: 300px;
 
-    // @media (max-width: 1023px) {
-    //   max-width: 100%;
-    //   height: fit-content;
-    // }
+    @media (max-width: 1023px) {
+      max-width: 100%;
+      height: fit-content;
+    }
   }
 
   &__list {
@@ -64,11 +64,11 @@ const toggleSideBar = () => (isSideBarOpen.value = !isSideBarOpen.value);
     flex-direction: column;
     gap: 10px;
 
-    // @media (max-width: 1023px) {
-    //   flex-direction: row;
-    //   padding-left: 10px;
-    //   padding-right: 10px;
-    // }
+    @media (max-width: 1023px) {
+      flex-direction: row;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
 }
 </style>

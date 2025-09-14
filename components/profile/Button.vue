@@ -1,6 +1,10 @@
 <template>
-  <button class="exit">Выйти</button>
+  <button class="exit">{{ title }}</button>
 </template>
+
+<script setup>
+const { title } = defineProps(["title"]);
+</script>
 
 <style scoped lang="scss">
 .exit {

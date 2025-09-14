@@ -1,8 +1,8 @@
 <template>
-  <div class="page-screen home">
-    <SideBar />
+  <div class="page-screen dashboard">
+    <SideBar v-if="!isScreenLarge" />
     <div class="content">
-      <Header />
+      <Header :firstName="firstName" :lastName="lastName" :email="email" />
       <main class="main">
         <h1>MAIN CONTENT</h1>
         <NuxtLink to="/">Auth Page</NuxtLink>
@@ -11,15 +11,39 @@
   </div>
 </template>
 
+<script setup>
+import { useResizeLarge } from "~/composables/useResizeLarge";
+const { isScreenLarge } = useResizeLarge();
+
+const firstName = ref("Александр");
+const lastName = ref("Моругин");
+const email = ref("nobilis@bk.ru");
+</script>
+
 <style scoped lang="scss">
-.home {
+.dashboard {
   display: flex;
   height: 100vh;
+  padding-left: 24px;
+  padding-right: 24px;
+
+  @media (max-width: 1023px) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 .content {
   width: 100%;
 }
 .main {
-  border: 1px solid red;
+  min-height: 800px;
+  border: 2px solid var(--border-color-inverse);
+  border-radius: 30px;
+  padding: 40px;
+
+  @media (max-width: 1023px) {
+    border: none;
+    border-radius: 0;
+  }
 }
 </style>

@@ -10,7 +10,7 @@
   </button>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 const { authState, title } = defineProps(["authState", "title"]);
 const emit = defineEmits(["openAuth"]);
 </script>
