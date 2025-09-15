@@ -144,7 +144,7 @@ const goBack = () => {
   }
 
   &__title {
-    font-family: "Inter-Medium", sans-serif;
+    font-family: "Inter-Bold", sans-serif;
     font-size: 48px;
     color: var(--text-color-primary);
     text-align: center;

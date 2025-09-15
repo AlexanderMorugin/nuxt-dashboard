@@ -3,19 +3,15 @@
     :class="['sideBarMobile', { sideBarMobile_active: isMenuMobileOpen }]"
   >
     <!-- Кнопки сайдбара -->
-    <ul class="aside__list">
+    <ul class="sideBarMobile__list">
       <li>
-        <SideButton
-          :isSideBarOpen="isSideBarOpen"
-          :isActive="true"
-          title="Number One"
-        />
+        <SideButton isSideBarOpen="true" isActive="true" title="Number One" />
       </li>
       <li>
-        <SideButton :isSideBarOpen="isSideBarOpen" title="Number Two" />
+        <SideButton isSideBarOpen="true" title="Number Two" />
       </li>
       <li>
-        <SideButton :isSideBarOpen="isSideBarOpen" title="Number Three" />
+        <SideButton isSideBarOpen="true" title="Number Three" />
       </li>
     </ul>
   </section>
@@ -29,19 +25,19 @@ const { isMenuMobileOpen } = defineProps(["isMenuMobileOpen"]);
 .sideBarMobile {
   width: 100%;
   height: 0;
-  transition: 0.2s ease;
+  background: var(--bg-inverse-secondary);
+  transition: 0.5s ease;
   overflow: hidden;
 
-  border: 1px solid red;
-
   &_active {
-    height: fit-content;
+    height: 200px;
+    padding: 20px 10px;
   }
 
   &__list {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 20px;
   }
 }
 </style>

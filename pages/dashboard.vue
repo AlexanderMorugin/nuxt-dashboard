@@ -2,16 +2,18 @@
   <div class="page-screen dashboard">
     <SideBar v-if="!isScreenLarge" />
     <div class="content">
-      <Header
-        :firstName="firstName"
-        :lastName="lastName"
-        :email="email"
-        @openMenuMobile="openMenuMobile"
+      <Header @openMenuMobile="openMenuMobile" />
+      <SideBarMobile
+        v-if="isScreenLarge"
+        :isMenuMobileOpen="isMenuMobileOpen"
       />
-      <SideBarMobile :isMenuMobileOpen="isMenuMobileOpen" />
       <main class="main">
-        <h1>MAIN CONTENT</h1>
-        <NuxtLink to="/">Auth Page</NuxtLink>
+        <div v-if="isMainContent">
+          <h1>MAIN CONTENT</h1>
+          <NuxtLink to="/">Auth Page</NuxtLink>
+        </div>
+
+        <ContentProfile v-if="isProfileContent" />
       </main>
     </div>
   </div>
@@ -21,9 +23,11 @@
 import { useResizeLarge } from "~/composables/useResizeLarge";
 const { isScreenLarge } = useResizeLarge();
 
-const firstName = ref("Александр");
-const lastName = ref("Моругин");
-const email = ref("nobilis@bk.ru");
+const dashboardStore = useDashboardStore();
+
+const isMainContent = computed(() => dashboardStore.dashboard.isMain);
+const isProfileContent = computed(() => dashboardStore.dashboard.isProfile);
+
 const isMenuMobileOpen = ref(false);
 
 const openMenuMobile = () => (isMenuMobileOpen.value = !isMenuMobileOpen.value);
@@ -48,11 +52,14 @@ const openMenuMobile = () => (isMenuMobileOpen.value = !isMenuMobileOpen.value);
   min-height: 800px;
   border: 2px solid var(--border-color-inverse);
   border-radius: 30px;
-  padding: 40px;
+  background-image: url("~/assets/images/gradient-bg.svg.png");
+  background-repeat: no-repeat;
+  padding: 40px 20px;
 
   @media (max-width: 1023px) {
     border: none;
     border-radius: 0;
+    padding: 20px 10px;
   }
 }
 </style>

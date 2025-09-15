@@ -6,19 +6,13 @@
       title="Меню"
       @click="$emit('openMenuMobile')"
     />
-    <ProfileBlock :firstName="firstName" :lastName="lastName" :email="email" />
+    <ProfileBlock />
   </header>
 </template>
 
 <script setup>
 import { useResizeLarge } from "~/composables/useResizeLarge";
 const { isScreenLarge } = useResizeLarge();
-
-const { firstName, lastName, email } = defineProps([
-  "firstName",
-  "lastName",
-  "email",
-]);
 
 const emit = defineEmits(["openMenuMobile"]);
 </script>

@@ -38,10 +38,14 @@ const {
   width: 100%;
   max-width: 49px;
   background: var(--btn-bg-primary);
-  border: 2px solid var(--border-color);
+  border: 2px solid var(--border-color-inverse);
   border-radius: 15px;
   padding: 10px;
   transition: 0.25s ease all;
+
+  @media (max-width: 1023px) {
+    border: 2px solid var(--border-color);
+  }
 
   &:hover {
     background: var(--border-color);

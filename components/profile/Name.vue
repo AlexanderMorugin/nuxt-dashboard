@@ -1,19 +1,15 @@
 <template>
   <div>
     <div class="name">
-      <span>{{ firstName }}</span>
-      <span>{{ lastName }}</span>
+      <span>{{ userStore.user.firstName }}</span>
+      <span>{{ userStore.user.lastName }}</span>
     </div>
-    <div class="email">{{ email }}</div>
+    <div class="email">{{ userStore.user.email }}</div>
   </div>
 </template>
 
 <script setup>
-const { firstName, lastName, email } = defineProps([
-  "firstName",
-  "lastName",
-  "email",
-]);
+const userStore = useUserStore();
 </script>
 
 <style scoped lang="scss">

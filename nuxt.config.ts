@@ -8,14 +8,5 @@ export default defineNuxtConfig({
     "~/assets/scss/_fonts.scss",
     "~/assets/scss/_form.scss",
   ],
-  // vite: {
-  //   css: {
-  //     preprocessorOptions: {
-  //       scss: {
-  //         additionalData: '@use "~/assets/scss/_mixins.scss" as *;',
-  //       },
-  //     },
-  //   },
-  // },
-  modules: ["@nuxtjs/color-mode"],
+  modules: ["@nuxtjs/color-mode", "@pinia/nuxt"],
 });
