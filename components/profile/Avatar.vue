@@ -10,7 +10,6 @@
   height: 40px;
   border-radius: 50%;
   overflow: hidden;
-  // border: 1px solid red;
 
   &__image {
     width: 100%;

@@ -25,17 +25,11 @@ const emit = defineEmits(["openMenuMobile"]);
   width: 100%;
   padding-left: 76px;
   height: var(--header-height);
-  // border: 1px solid red;
 
   @media (max-width: 1023px) {
     padding-left: 10px;
     padding-right: 10px;
   }
-
-  // &__sideOpenButton {
-  //   width: 36px;
-  //   height: 36px;
-  // }
 
   &__content {
     display: flex;

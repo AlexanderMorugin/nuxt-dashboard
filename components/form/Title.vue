@@ -6,7 +6,7 @@
 const { title } = defineProps(["title"]);
 </script>
 
-<style>
+<style scoped lang="scss">
 .formTitle {
   font-family: "Inter-Bold", sans-serif;
   font-size: 32px;

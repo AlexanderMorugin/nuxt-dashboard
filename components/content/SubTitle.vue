@@ -6,7 +6,7 @@
 const { title } = defineProps(["title"]);
 </script>
 
-<style>
+<style scoped lang="scss">
 .contentSubTitle {
   font-family: "Inter-Medium", sans-serif;
   font-size: 24px;

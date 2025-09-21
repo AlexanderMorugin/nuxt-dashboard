@@ -2,5 +2,6 @@
   "cSpell.words": [
     "Nuxt",
     "nuxtjs"
-  ]
+  ],
+  "postman.settings.dotenv-detection-notification-visibility": false
 }

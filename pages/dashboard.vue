@@ -9,7 +9,8 @@
       />
       <main class="main">
         <div v-if="isMainContent">
-          <h1>MAIN CONTENT</h1>
+          <h1>Users</h1>
+          <Users />
           <NuxtLink to="/">Auth Page</NuxtLink>
         </div>
 

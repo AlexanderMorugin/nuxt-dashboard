@@ -8,18 +8,21 @@
         id="firstNameField"
         name="firstNameField"
         placeholder="Имя"
-        v-model="v$.firstNameField.$model"
+        v-model.lazy="v$.firstNameField.$model"
         :class="[
           'form-input',
           { 'form-input-warning': v$.firstNameField.$errors.length },
         ]"
       />
+      <!-- Показывается ошибка, если таковая имеется -->
       <span
         v-for="item in v$.firstNameField.$errors"
         :key="item.$uid"
         class="form-input-error"
         >{{ item.$message }}</span
       >
+      <!-- Очистка инпута по нажатию на крестик -->
+      <FormClear v-if="firstNameField" @clearInput="firstNameField = null" />
     </div>
 
     <!-- Поле ввода фамилии -->
@@ -29,18 +32,21 @@
         id="lastNameField"
         name="lastNameField"
         placeholder="Фамилия"
-        v-model="v$.lastNameField.$model"
+        v-model.lazy="v$.lastNameField.$model"
         :class="[
           'form-input',
           { 'form-input-warning': v$.lastNameField.$errors.length },
         ]"
       />
+      <!-- Показывается ошибка, если таковая имеется -->
       <span
         v-for="item in v$.lastNameField.$errors"
         :key="item.$uid"
         class="form-input-error"
         >{{ item.$message }}</span
       >
+      <!-- Очистка инпута по нажатию на крестик -->
+      <FormClear v-if="lastNameField" @clearInput="lastNameField = null" />
     </div>
 
     <!-- Поле ввода почты -->
@@ -50,18 +56,21 @@
         id="emailField"
         name="emailField"
         placeholder="Почта"
-        v-model="v$.emailField.$model"
+        v-model.lazy="v$.emailField.$model"
         :class="[
           'form-input',
           { 'form-input-warning': v$.emailField.$errors.length },
         ]"
       />
+      <!-- Показывается ошибка, если таковая имеется -->
       <span
         v-for="item in v$.emailField.$errors"
         :key="item.$uid"
         class="form-input-error"
         >{{ item.$message }}</span
       >
+      <!-- Очистка инпута по нажатию на крестик -->
+      <FormClear v-if="emailField" @clearInput="emailField = null" />
     </div>
 
     <!-- Поле ввода пароль -->
@@ -71,18 +80,21 @@
         id="passwordField"
         name="passwordField"
         placeholder="Пароль"
-        v-model="v$.passwordField.$model"
+        v-model.lazy="v$.passwordField.$model"
         :class="[
           'form-input',
           { 'form-input-warning': v$.passwordField.$errors.length },
         ]"
       />
+      <!-- Показывается ошибка, если таковая имеется -->
       <span
         v-for="item in v$.passwordField.$errors"
         :key="item.$uid"
         class="form-input-error"
         >{{ item.$message }}</span
       >
+      <!-- Очистка инпута по нажатию на крестик -->
+      <FormClear v-if="passwordField" @clearInput="passwordField = null" />
     </div>
 
     <!-- Поле ввода пароль еще раз -->
@@ -98,6 +110,7 @@
           { 'form-input-warning': v$.confirmPasswordField.$errors.length },
         ]"
       />
+      <!-- Показывается ошибка, если таковая имеется -->
       <span
         v-for="item in v$.confirmPasswordField.$errors"
         :key="item.$uid"
@@ -105,6 +118,12 @@
         >{{ item.$message }}</span
       >
     </div>
+
+    <!-- Появляющийся текст ошибки -->
+    <FormErrorMessage
+      v-if="existUserEmailErrorMessage"
+      :text="existUserEmailErrorMessage"
+    />
 
     <!-- Кнопка Сабмит -->
     <FormSubmit
@@ -127,6 +146,7 @@ import {
 } from "@vuelidate/validators";
 
 const router = useRouter();
+const userStore = useUserStore();
 
 const isLoading = ref(false);
 const firstNameField = ref(null);
@@ -135,6 +155,9 @@ const emailField = ref(null);
 const passwordField = ref(null);
 const confirmPasswordField = ref(null);
 
+const existUserEmailErrorMessage = ref(null);
+
+// Валидация
 const rules = computed(() => ({
   firstNameField: {
     required: helpers.withMessage("Укажите имя", required),
@@ -183,28 +206,48 @@ const isFromEmpty = computed(
 
 const isValid = computed(() => v$.value.$errors);
 
-const submitRegisterForm = () => {
-  isLoading.value = true;
-
-  const data = {
-    firstName: firstNameField.value,
-    lastName: lastNameField.value,
-    email: emailField.value,
-    password: passwordField.value,
+// Сабмит
+const submitRegisterForm = async () => {
+  const registerData = {
+    firstName: firstNameField.value.trim(),
+    lastName: lastNameField.value.trim(),
+    email: emailField.value.trim(),
+    password: passwordField.value.trim(),
   };
 
-  console.log("data - ", data);
+  isLoading.value = true;
 
-  setTimeout(() => {
+  try {
+    const serverUser = await $fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + process.env.AUTH_SECRET,
+      },
+      body: JSON.stringify(registerData),
+    });
+
+    // Записываем юзера в Пинью
+    userStore.setUser(serverUser);
+
     isLoading.value = false;
 
     router.push("/dashboard");
 
+    // Очищаем поля формы
     firstNameField.value = null;
     lastNameField.value = null;
     emailField.value = null;
     passwordField.value = null;
     confirmPasswordField.value = null;
-  }, 2000);
+  } catch (error) {
+    console.log("Не могу зарегаться - ", error);
+
+    // Вносим запись в реф ошибки, что такая почта уже используется
+    existUserEmailErrorMessage.value =
+      "Пользователь с такой почтой уже существует.";
+  } finally {
+    isLoading.value = false;
+  }
 };
 </script>
