@@ -1,14 +1,8 @@
-import { hashPassword } from "./modules/bcrypt";
-
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
+  const { firstName, lastName, email, password } = await readBody(event);
 
   // Проверяем в БД есть ли пользователь с такой почтой
-  const userExist = await prisma.user.findUnique({
-    where: {
-      email: body.email,
-    },
-  });
+  const userExist = await getUserByEmail(email);
 
   // Если пользователь с такой почтой существует: Выбрасываем ошибку на стороне сервере
   if (userExist) {
@@ -19,17 +13,21 @@ export default defineEventHandler(async (event) => {
   }
 
   // Хешируем пароль
-  const hashUserPassword = await hashPassword(body.password);
+  const hashUserPassword = await hashPassword(password);
+
+  // Собираем все поля инпутов
+  const userData = {
+    firstName,
+    lastName,
+    email,
+    password: hashUserPassword,
+  };
 
   // Создаем в БД пользователя
-  const user = await prisma.user.create({
-    data: {
-      email: body.email,
-      firstName: body.firstName,
-      lastName: body.lastName,
-      password: hashUserPassword,
-    },
-  });
+  const user = await createUser(userData);
 
-  return user;
+  return {
+    message: "Регистрация прошла успешно!",
+    user: userTransformer(user),
+  };
 });

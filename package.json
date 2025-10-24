@@ -19,10 +19,12 @@
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^4.1.1",
     "pinia": "^3.0.3",
+    "url-pattern": "^1.0.3",
     "vue": "^3.5.20",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
+    "@types/node": "^24.5.2",
     "sass": "^1.92.1",
     "sass-loader": "^16.0.5"
   }

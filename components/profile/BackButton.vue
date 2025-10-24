@@ -1,10 +1,13 @@
 <template>
   <button class="backButton" @click="$emit('goBack')">
-    <IconArrowBack class="backButton__icon" />
+    <IconArrowBack
+      :class="['backButton__icon', { backButton__icon_black: blackArrow }]"
+    />
   </button>
 </template>
 
 <script setup>
+const { blackArrow = false } = defineProps(["blackArrow"]);
 const emit = defineEmits(["goBack"]);
 </script>
 
@@ -22,6 +25,9 @@ const emit = defineEmits(["goBack"]);
     color: var(--btn-arrow);
     transition: 0.25s ease all;
 
+    &_black {
+      color: var(--text-color-primary);
+    }
     &:hover {
       color: var(--text-color-secondary);
     }

@@ -25,27 +25,27 @@ const emit = defineEmits(["openAuth"]);
   font-family: "Inter-Regular", sans-serif;
   line-height: 1;
   font-size: 18px;
-  color: var(--btn-color-white);
+  color: var(--text-color-white);
   border-radius: 7px;
   border: 2px solid var(--blue-primary);
 
   &__login {
-    background: var(--green-secondary);
-    transition: 0.25s ease all;
+    background: var(--gradient-green-primary);
+    transition: 0.25s ease;
     animation: slide-to-right 0.5s ease;
 
     &:hover {
-      background: var(--green-primary);
+      background: var(--gradient-green-secondary);
     }
   }
 
   &__register {
-    background: var(--purple-primary);
+    background: var(--gradient-purple-primary);
     transition: 0.25s ease all;
     animation: slide-to-left 0.8s ease;
 
     &:hover {
-      background: var(--purple-secondary);
+      background: var(--gradient-purple-secondary);
     }
   }
 }

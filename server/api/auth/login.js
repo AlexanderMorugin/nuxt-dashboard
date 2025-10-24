@@ -1,16 +1,14 @@
-// import { generateTokens, sendRefreshToken } from '~/server/utils/jwt';
-import { comparePassword } from "./modules/bcrypt";
-// import { createRefreshToken } from '../db/refresh-tokens';
+// import { generateTokens, sendRefreshToken } from "~/server/utils/jwt";
+// import { comparePassword } from "~/server/utils/bcrypt";
+// import { createRefreshToken } from "~/server/utils/refresh-tokens";
 
 export default defineEventHandler(async (event) => {
   const { email, password } = await readBody(event);
 
-  const userExist = await prisma.user.findUnique({
-    where: {
-      email: email,
-    },
-  });
+  // Находим в БД пользователя с такой почтой
+  const userExist = await getUserByEmail(email);
 
+  // Если пользователя с такой почтой нет, выбрасываем ошибку
   if (!userExist) {
     throw createError({
       statusCode: 422,
@@ -18,8 +16,10 @@ export default defineEventHandler(async (event) => {
     });
   }
 
+  // Если пользователь с такой почтой ранее зарегистрирован и обнаружен, сверяем его пароль в БД с введенным в поле инпута
   const isMatch = await comparePassword(password, userExist?.password);
 
+  // Если пароли не совпадают, выбрасываем ошибку
   if (!isMatch) {
     throw createError({
       statusCode: 400,
@@ -27,34 +27,24 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  // const { accessToken, refreshToken } = generateTokens(userExist);
+  // Генерируем два токена для данного пользователя
+  // accessToken передаем на устройство пользователя
+  // refreshToken сохраняем в БД на сервере
+  const { accessToken, refreshToken } = generateTokens(userExist);
 
-  // await createRefreshToken({
-  //   token: refreshToken,
-  //   userId: userExist.id,
-  // });
+  // // Сохраняем рефреш токен в БД
+  await createRefreshToken({
+    token: refreshToken,
+    userId: userExist.id,
+  });
 
-  if (isMatch) {
-    const data = {
-      // token: {
-      //   refreshToken: refreshToken,
-      // },
-      user: userExist,
-      // isLoggedIn: true,
-    };
+  // Записываем рефреш токен Set Cookie http only
+  sendRefreshToken(event, refreshToken);
 
-    // Set Cookie http only
-    // sendRefreshToken(event, refreshToken);
-
-    return {
-      message: "Вход успешно выполнен",
-      // access_token: accessToken,
-      data,
-    };
-  } else {
-    throw createError({
-      statusCode: 422,
-      message: "Имя пользователя или пароль неверные",
-    });
-  }
+  // Если пароли совпали, возвращаем приветствие и пользователя из БД
+  return {
+    message: "Вход успешно выполнен",
+    access_token: accessToken,
+    user: userTransformer(userExist),
+  };
 });

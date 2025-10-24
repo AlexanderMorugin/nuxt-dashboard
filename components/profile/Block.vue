@@ -1,11 +1,20 @@
 <template>
   <div class="profileBlock">
+    <!-- Кнопки "Выйти из профиля" для десктопной и мобильной версии -->
     <ProfileButton v-if="!isScreenLarge" title="Выйти" />
     <ProfileExitButton v-if="isScreenLarge" />
-    <button @click="showProfile" class="profileBlock__name">
+
+    <!-- Кнопка редактирования профиля -->
+    <ProfileSettingsButton
+      v-if="dashboardStore.dashboard.isMain"
+      @showProfile="showProfile"
+    />
+
+    <!-- Аватарка и имя пользователя -->
+    <div class="profileBlock__name">
       <ProfileAvatar />
       <ProfileName v-if="!isScreenMedium" />
-    </button>
+    </div>
   </div>
 </template>
 
@@ -37,12 +46,6 @@ const showProfile = () => {
     border-bottom: 2px solid var(--bg);
     padding-top: 10px;
     padding-bottom: 10px;
-    transition: 0.25s ease;
-    cursor: pointer;
-
-    &:hover {
-      border-bottom: 2px solid var(--border-color-inverse);
-    }
   }
 }
 </style>

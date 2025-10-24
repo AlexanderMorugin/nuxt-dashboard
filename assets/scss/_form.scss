@@ -12,10 +12,10 @@
   height: 55px;
   border-radius: 12px;
   border: 2px solid var(--blue-primary);
-  background: var(--background-primary);
+  background: var(--bg-white);
   font-family: "Inter-Medium", sans-serif;
   font-size: 18px;
-  color: var(--text-color-primary-active);
+  color: var(--text-color-black);
   padding-left: 20px;
   padding-right: 20px;
   transition: 0.3s ease all;
@@ -23,7 +23,7 @@
 .form-input:focus {
   font-family: "Inter-Medium", sans-serif;
   font-size: 18px;
-  color: var(--text-color-primary-active);
+  color: var(--text-color-black);
   outline: 0;
   border: 2px solid var(--purple-primary);
 }
@@ -54,23 +54,21 @@
   height: 55px;
   border-radius: 12px;
   border: 2px solid var(--blue-primary);
-  background: var(--text-color-secondary);
   font-family: "Inter-Medium", sans-serif;
   font-size: 16px;
   letter-spacing: 1px;
-  color: var(--btn-color-white);
+  color: var(--text-color-white);
   text-transform: uppercase;
   cursor: auto;
   margin-top: 20px;
 }
 .form-button-active {
-  background: var(--purple-primary);
-  border: 1px solid transparent;
+  background: var(--gradient-green-primary);
   cursor: pointer;
-  transition: 0.25s ease all;
+  transition: 0.25s ease;
 }
 .form-button-active:hover {
-  background: var(--purple-secondary);
+  background: var(--gradient-green-secondary);
 }
 .form-empty-button {
   display: flex;
@@ -79,9 +77,8 @@
   width: 100%;
   height: 55px;
   border-radius: 12px;
-  border: 2px solid var(--blue-primary);
+  border: 2px solid var(--text-color-secondary);
   background: var(--text-color-secondary);
-  // color: var(--btn-color-white);
   text-transform: uppercase;
   cursor: auto;
   margin-top: 20px;
@@ -89,8 +86,7 @@
 .form-empty-button-text {
   font-family: "Inter-Medium", sans-serif;
   font-size: 16px;
-  // color: var(--text-color-primary);
-  color: var(--btn-color-white);
+  color: var(--text-color-white);
   white-space: nowrap;
   animation: slide-in 1.5s ease;
 }

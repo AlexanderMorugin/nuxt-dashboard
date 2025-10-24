@@ -1,6 +1,11 @@
 <template>
   <div class="contentProfile">
-    <ContentTitle title="Ваш профиль" />
+    <div class="contentProfile__title">
+      <!-- Кнопка Назад -->
+      <ProfileBackButton @goBack="goFromProfile" blackArrow="true" />
+      <!-- Титл компонента h1 -->
+      <ContentTitle title="Ваш профиль" />
+    </div>
     <div class="contentProfile__forms">
       <ProfileEdit />
       <ProfilePassword />
@@ -10,11 +15,11 @@
 </template>
 
 <script setup>
-// const dashboardStore = useDashboardStore();
+const dashboardStore = useDashboardStore();
 
-// const closeProfile = () => {
-//   dashboardStore.closeProfile();
-// };
+const goFromProfile = () => {
+  dashboardStore.closeProfile();
+};
 </script>
 
 <style scoped lang="scss">
@@ -22,7 +27,12 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  // border: 1px solid red;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
 
   &__forms {
     display: flex;

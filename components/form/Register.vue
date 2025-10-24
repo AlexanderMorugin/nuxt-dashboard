@@ -220,15 +220,12 @@ const submitRegisterForm = async () => {
   try {
     const serverUser = await $fetch("/api/auth/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + process.env.AUTH_SECRET,
-      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      //   // Authorization: "Bearer " + process.env.AUTH_SECRET,
+      // },
       body: JSON.stringify(registerData),
     });
-
-    // Записываем юзера в Пинью
-    userStore.setUser(serverUser);
 
     isLoading.value = false;
 

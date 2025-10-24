@@ -15,6 +15,8 @@
         </div>
 
         <ContentProfile v-if="isProfileContent" />
+
+        <!-- {{ user }} -->
       </main>
     </div>
   </div>
@@ -23,6 +25,8 @@
 <script setup>
 import { useResizeLarge } from "~/composables/useResizeLarge";
 const { isScreenLarge } = useResizeLarge();
+// const { useAuthUser, initAuth } = useAuth();
+// const user = useAuthUser();
 
 const dashboardStore = useDashboardStore();
 
@@ -32,6 +36,10 @@ const isProfileContent = computed(() => dashboardStore.dashboard.isProfile);
 const isMenuMobileOpen = ref(false);
 
 const openMenuMobile = () => (isMenuMobileOpen.value = !isMenuMobileOpen.value);
+
+// onBeforeMount(() => {
+//   initAuth();
+// });
 </script>
 
 <style scoped lang="scss">

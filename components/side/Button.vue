@@ -10,6 +10,7 @@
       :class="['sideButton__icon', { sideButton__icon_active: isActive }]"
     />
     <span
+      v-if="isSideBarOpen"
       :class="[
         'sideButton__text',
         { sideButton__text_visible: isSideBarOpen },

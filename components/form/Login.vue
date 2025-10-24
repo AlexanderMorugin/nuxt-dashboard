@@ -72,7 +72,8 @@ import { useVuelidate } from "@vuelidate/core";
 import { helpers, required, minLength, email } from "@vuelidate/validators";
 
 const router = useRouter();
-const userStore = useUserStore();
+
+// const userStore = useUserStore();
 
 const isLoading = ref(false);
 
@@ -122,36 +123,21 @@ const isValid = computed(() => v$.value.$errors);
 
 // Сабмит
 const submitLoginForm = async () => {
+  const { login } = useAuth();
+
+  isLoading.value = true;
+
   const loginData = {
     email: emailField.value.trim(),
     password: passwordField.value.trim(),
   };
 
-  isLoading.value = true;
-
   try {
-    const serverUser = await $fetch("/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + process.env.AUTH_SECRET,
-      },
-      body: JSON.stringify(loginData),
-    });
-
-    // Записываем юзера в Стор
-    userStore.setUser(serverUser.data.user);
-
-    isLoading.value = false;
+    await login(loginData);
 
     router.push("/dashboard");
-
-    // Очищаем поля формы
-    emailField.value = null;
-    passwordField.value = null;
   } catch (error) {
-    console.log("Не могу залогинится - ", error);
-
+    console.log(error);
     // Вносим запись в реф ошибки, что почта или пароль неверные
     emailOrPasswordErrorMessage.value = "Имя пользователя или пароль неверные.";
   } finally {

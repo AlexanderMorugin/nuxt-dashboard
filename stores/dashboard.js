@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useDashboardStore = defineStore("dashboard", () => {
+export const useDashboardStore = defineStore("dashboardStore", () => {
   const dashboard = ref({
     isMain: true,
     isProfile: false,
@@ -12,8 +12,8 @@ export const useDashboardStore = defineStore("dashboard", () => {
   };
 
   const closeProfile = () => {
-    // dashboard.value.isMain = true;
-    // dashboard.value.isProfile = false;
+    dashboard.value.isMain = true;
+    dashboard.value.isProfile = false;
   };
 
   return { dashboard, showProfile, closeProfile };
